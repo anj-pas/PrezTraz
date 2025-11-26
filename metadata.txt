@@ -1,0 +1,9 @@
+[general]
+name=PrezTraz
+qgisMinimumVersion=3.0
+description=2D SEGY profiles load and display seismic on map
+version=0.1
+author=Andrzej Pasternacki
+email=anj.pasternacki@gmail.com
+icon=icon.png
+category=Seismic
