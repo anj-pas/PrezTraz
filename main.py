@@ -10,7 +10,8 @@ from qgis.utils import iface
 from qgis.core import (
     QgsProject, QgsVectorLayer, QgsFeature, QgsGeometry, QgsPointXY, 
     QgsFields, QgsField, Qgis, 
-    QgsFeatureRequest, QgsCoordinateReferenceSystem
+    QgsFeatureRequest, QgsCoordinateReferenceSystem,
+    QgsLineSymbol, QgsSingleSymbolRenderer
 )
 from qgis.gui import QgsCrsSelectionWidget 
 from qgis.PyQt.QtGui import QIcon 
@@ -806,6 +807,13 @@ class SeismicPlugin:
             return
             
         layer.updateFields() 
+        # Set default line color to green
+        try:
+            green_symbol = QgsLineSymbol.createSimple({'color': '0,128,0', 'width': '0.8'})
+            layer.setRenderer(QgsSingleSymbolRenderer(green_symbol))
+        except Exception:
+            pass
+
         QgsProject.instance().addMapLayer(layer)
         self.seismic_layer = layer
         
